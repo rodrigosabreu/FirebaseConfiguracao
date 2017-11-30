@@ -18,7 +18,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        firebase.child("pontuacao").setValue("100")
+        let pontuacao = firebase.child("pontuacao")
+        
+        //pontuacao.child("002").child("nome").setValue("Maria")
+        
+        pontuacao.removeValue()
         
     }
 
