@@ -20,6 +20,32 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        //Criacao de usuario
+        Auth.auth().createUser(withEmail: "rodrigo.s.abreu@gmail.com", password: "rod123456") { (usuario, erro) in
+            
+            if erro == nil{
+                print("Sucesso ao cadastrar usuario !!")
+            }else{
+                print("Erro ao cadastrar usuario: \(String(describing: erro?.localizedDescription))")
+            }
+            
+            
+        }
+        
+        
+        
+        //Testar se o usuario esta logado
+        Auth.auth().addStateDidChangeListener { (Auth, usuario) in
+            
+            if let usuarioLogado = usuario {
+                print("usuario esta logado! " + String(describing: usuarioLogado.email))
+            }else{
+                print("usuario nao esta logado!!")
+            }
+            
+        }
+        
+        
         
         /*let usuarios = firebase.child("usuarios")
         usuarios.removeValue()
@@ -38,7 +64,7 @@ class ViewController: UIViewController {
         //pontuacao.child("valor").setValue("100")
         
         //Recuperar dados do Firebase
-        let pontuacao = firebase.child("pontuacao").child("valor")
+        /*let pontuacao = firebase.child("pontuacao").child("valor")
         
         pontuacao.observe(DataEventType.value, with: {(dados) in
             
@@ -46,7 +72,7 @@ class ViewController: UIViewController {
              let ponto = String(describing: dados.value!)
                 self.textoLabel.text = ponto
 
-        })
+        })*/
         
         
         
