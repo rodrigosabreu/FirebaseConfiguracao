@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //Usar FireBase de forma global
     override init(){
+        FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)       
         FirebaseApp.configure()        
     }
 

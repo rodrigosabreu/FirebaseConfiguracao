@@ -20,6 +20,45 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        /*
+        //Logout do usuario
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("Erro ao deslogar o usuario !!")
+        }
+        */
+ 
+ 
+        //Logar usuario
+        Auth.auth().signIn(withEmail: "rodrigo.s.abreu@gmail.com", password: "rod123456") { (usuario, erro) in
+            
+            if erro == nil{
+                print("Sucesso so Logar o usuario!!")
+            }else{
+                 print("Erro ao cadastrar usuario: \(String(describing: erro?.localizedDescription))")
+            }
+            
+        }
+        
+        
+ 
+        
+        //testar se o usuario esta logado ou deslogado
+        Auth.auth().addStateDidChangeListener { (Auth, usuario) in
+            
+            if let usuarioLogado = usuario {
+                print("usuario esta logado! " + String(describing: usuarioLogado.email))
+            }else{
+                print("usuario nao esta logado!!")
+            }
+            
+        }
+        
+        
+        
+        
+        /*
         //Criacao de usuario
         Auth.auth().createUser(withEmail: "rodrigo.s.abreu@gmail.com", password: "rod123456") { (usuario, erro) in
             
@@ -31,9 +70,10 @@ class ViewController: UIViewController {
             
             
         }
+        */
         
         
-        
+        /*
         //Testar se o usuario esta logado
         Auth.auth().addStateDidChangeListener { (Auth, usuario) in
             
@@ -44,7 +84,7 @@ class ViewController: UIViewController {
             }
             
         }
-        
+        */
         
         
         /*let usuarios = firebase.child("usuarios")
