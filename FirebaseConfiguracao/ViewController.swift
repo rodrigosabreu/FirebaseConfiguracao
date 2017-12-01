@@ -12,7 +12,8 @@ import Firebase
 
 class ViewController: UIViewController {
 
-    var firebase = Database.database().reference()
+    var firebase = Database.database().reference()    
+    @IBOutlet var textoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
         
         
         
-        let usuarios = firebase.child("usuarios")
+        /*let usuarios = firebase.child("usuarios")
         usuarios.removeValue()
         
         usuarios.child("001").child("nome").setValue("Rodrigo")
@@ -30,7 +31,22 @@ class ViewController: UIViewController {
         usuarios.child("005").child("nome").setValue("Eliana")
         usuarios.child("006").child("nome").setValue("Ronaldo")
         
-        usuarios.child("003").removeValue()
+        usuarios.child("003").removeValue()*/
+        
+        
+        //let pontuacao = firebase.child("pontuacao")
+        //pontuacao.child("valor").setValue("100")
+        
+        //Recuperar dados do Firebase
+        let pontuacao = firebase.child("pontuacao").child("valor")
+        
+        pontuacao.observe(DataEventType.value, with: {(dados) in
+            
+            print(dados)
+             let ponto = String(describing: dados.value!)
+                self.textoLabel.text = ponto
+
+        })
         
         
         
